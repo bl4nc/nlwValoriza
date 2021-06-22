@@ -1,7 +1,16 @@
+import "reflect-metadata";
 import express from "express"; 
-
+import { router } from "./routes";
+import "./database"
 //@types/express - yarn add @types/express -D para adicionar 
 const app = express();
+
+app.use(express.json());
+
+app.use(router);
+
+app.listen(3000 , ()=> console.log ('Server is run'));
+
 
 /**
  * GET => Buscar informação 
@@ -11,12 +20,12 @@ const app = express();
  * Patch => Alterar uma informação especifica
  */
 
-app.get('/test', (request, response) => {
-    return response.send('Ola NLW')
-})
-
-app.post('/test-post',(request, response) => {
-    return response.send('NLW post')
-})
-
-app.listen(3000 , ()=> console.log ('Server is run'));
+/**
+ * Tipos de parâmetros
+ * Routes params => localhost:3000/produtos/x
+ * Query params => localhost:3000/produtos?name=x
+ * Body params => {
+ * "name":"x",
+ * "description":"y"
+ * }
+ */
